@@ -2,7 +2,7 @@ import logging
 import requests
 import json
 
-from settings import ATLASSIAN_MARKETPLACE_VENDOR_URL
+from atlassian_marketplace_python_client.settings import ATLASSIAN_MARKETPLACE_VENDOR_URL
 
 
 logger = logging.getLogger(__name__)
