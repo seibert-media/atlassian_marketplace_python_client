@@ -1,4 +1,4 @@
-# atlassian_marketplace_python_client
+# Atlassian Marketplace Python Client
 The Python Client for the Atlassian Marketplace, which allows to easily get information from
 the Atlassian Marketplace and setting information in it. 
 
