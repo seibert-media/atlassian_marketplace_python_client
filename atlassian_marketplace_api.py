@@ -1,7 +1,9 @@
 import logging
 import requests
 import json
+
 from settings import ATLASSIAN_MARKETPLACE_VENDOR_URL
+
 
 logger = logging.getLogger(__name__)
 
@@ -12,24 +14,16 @@ class AtlassianMarketplaceTimeoutException(Exception):
         self.response = response
 
     def __str__(self):
-        return 'Timeout {} - {} beim Zugriff auf {}'.format(
-            self.response.status_code,
-            self.response.text,
-            self.response.url
-        )
+        return f'Timeout {self.response.status_code} - {self.response.text} beim Zugriff auf {self.response.url}'
 
 
 class AtlassianMarketplaceNotFound(Exception):
 
-    def __init(self, response):
+    def __init__(self, response):
         self.response = response
 
     def __str__(self):
-        return 'Couldn\'t find Entity {} - {} while requesting {}'.format(
-            self.response.status_code,
-            self.response.text,
-            self.response.url
-        )
+        return f'Couldn\'t find Entity {self.response.status_code} - {self.response.text} while requesting {self.response.url}'
 
 
 class AtlassianMarketplaceAPI:
@@ -38,7 +32,6 @@ class AtlassianMarketplaceAPI:
         self.session = requests.Session()
 
     def _get_request(self, url):
-
         response = []
 
         try:
@@ -53,14 +46,12 @@ class AtlassianMarketplaceAPI:
         return response
 
     def _get_and_parse_products_to_json(self, url):
-
         products = self._get_request(url)
         products_as_json = json.loads(products.content)
 
         return products_as_json
 
     def get_all_products_of_vendor(self, vendor_id):
-
         products = []
 
         all_products_as_json = self._get_and_parse_products_to_json(ATLASSIAN_MARKETPLACE_VENDOR_URL + str(vendor_id))
@@ -81,12 +72,12 @@ class AtlassianMarketplaceAPI:
         return products
 
     def get_all_product_names_of_vendor(self, vendor_id):
-
         product_names = []
 
         all_products = self.get_all_products_of_vendor(vendor_id)
 
         for product in all_products:
-            product_names.append(product.get('name', ''))
+            if 'name' in product:
+                product_names.append(product['name'])
 
         return product_names

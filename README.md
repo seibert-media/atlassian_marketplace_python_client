@@ -28,7 +28,10 @@ venv/bin/pip install -r requirements.txt
 ## Versioning
 
 Version 0.1:
-Supports getting products from a specific vendor(as json) and getting only the names of the products of a specific vendor. 
+Supports getting products from a specific vendor(as json) and getting only the names of the products of a specific vendor.
+
+Version 0.2:
+Update to requests 2.20.0 to fix potential vulnerability.
 
 ## Authors
 
