@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="atlassian_marketplace_python_client",
-    version="0.3",
+    version="0.3.1",
     author="Jean Petry",
     author_email="jpetry@seibert-media.net",
     description="The Python Client for the Atlassian Marketplace",
